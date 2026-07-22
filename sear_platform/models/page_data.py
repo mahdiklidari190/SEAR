@@ -1,0 +1,165 @@
+"""Page data models - preserved and extended."""
+from __future__ import annotations
+
+from typing import Optional
+
+from pydantic import BaseModel, Field
+
+from .issues import Issue
+
+
+class LinkAnalysis(BaseModel):
+    total: int = 0
+    internal: int = 0
+    external: int = 0
+    nofollow: int = 0
+    sponsored: int = 0
+    ugc: int = 0
+    empty_orphan: int = 0
+    # Extended
+    internal_urls: list[str] = Field(default_factory=list)
+    external_urls: list[str] = Field(default_factory=list)
+    anchor_texts: list[dict[str, str]] = Field(default_factory=list)
+
+
+class ImageAnalysis(BaseModel):
+    total: int = 0
+    missing_alt: int = 0
+    empty_alt: int = 0
+    duplicate_alt: set[str] = Field(default_factory=set)
+    missing_dimensions: int = 0
+    modern_format: int = 0
+    lazy_loaded: int = 0
+    # Extended
+    oversized_images: list[str] = Field(default_factory=list)
+    render_blocking: list[str] = Field(default_factory=list)
+
+
+class StructuredData(BaseModel):
+    found: bool = False
+    types: list[str] = Field(default_factory=list)
+    errors: list[str] = Field(default_factory=list)
+    raw_json: list[dict] = Field(default_factory=list)
+
+
+class SecurityHeaders(BaseModel):
+    """Technical security header analysis."""
+    hsts: bool = False
+    csp: bool = False
+    x_frame_options: str = ""
+    x_content_type_options: bool = False
+    referrer_policy: str = ""
+    permissions_policy: bool = False
+    coop: bool = False
+    corp: bool = False
+    issues: list[str] = Field(default_factory=list)
+
+
+class PerformanceData(BaseModel):
+    """Server performance metrics."""
+    ttfb_ms: float = 0.0
+    connection_time_ms: float = 0.0
+    total_time_ms: float = 0.0
+    http_version: str = ""
+    compression: str = ""
+    server: str = ""
+    cdn_detected: str = ""
+    cache_control: str = ""
+    etag: bool = False
+    last_modified: bool = False
+
+
+class SSLData(BaseModel):
+    """SSL/TLS certificate information."""
+    valid: bool = False
+    issuer: str = ""
+    expiry_date: str = ""
+    tls_version: str = ""
+    mixed_content: list[str] = Field(default_factory=list)
+    issues: list[str] = Field(default_factory=list)
+
+
+class JSRenderingData(BaseModel):
+    """JavaScript rendering detection."""
+    framework_detected: str = ""
+    is_spa: bool = False
+    client_rendered: bool = False
+    server_rendered: bool = False
+    hydration_issues: list[str] = Field(default_factory=list)
+    render_blocking_scripts: list[str] = Field(default_factory=list)
+
+
+class MobileData(BaseModel):
+    """Mobile-friendliness data."""
+    has_viewport: bool = False
+    viewport_content: str = ""
+    font_size_issues: list[str] = Field(default_factory=list)
+    tap_target_issues: list[str] = Field(default_factory=list)
+    responsive_images: bool = False
+    is_mobile_friendly: bool = True
+
+
+class BreadcrumbData(BaseModel):
+    """Breadcrumb validation."""
+    found: bool = False
+    schema_valid: bool = False
+    hierarchy_correct: bool = True
+    items: list[str] = Field(default_factory=list)
+    issues: list[str] = Field(default_factory=list)
+
+
+class PaginationData(BaseModel):
+    """Pagination analysis."""
+    has_next: bool = False
+    has_prev: bool = False
+    next_url: str = ""
+    prev_url: str = ""
+    canonical_conflict: bool = False
+    depth: int = 0
+    issues: list[str] = Field(default_factory=list)
+
+
+class PageData(BaseModel):
+    """Complete page analysis data - preserved and extended."""
+    url: str
+    status_code: int = 0
+    title: str = ""
+    meta_description: str = ""
+    meta_keywords: str = ""
+    meta_robots: str = ""
+    meta_author: str = ""
+    canonical_url: str = ""
+    og_title: str = ""
+    og_description: str = ""
+    og_image: str = ""
+    twitter_card: str = ""
+    h1: list[str] = Field(default_factory=list)
+    h2: list[str] = Field(default_factory=list)
+    h3: list[str] = Field(default_factory=list)
+    h4: list[str] = Field(default_factory=list)
+    hreflang: dict[str, str] = Field(default_factory=dict)
+    x_default: str = ""
+    links: LinkAnalysis = Field(default_factory=LinkAnalysis)
+    images: ImageAnalysis = Field(default_factory=ImageAnalysis)
+    structured_data: StructuredData = Field(default_factory=StructuredData)
+    accessibility_lang: str = ""
+    accessibility_issues: list[str] = Field(default_factory=list)
+    text_sample: str = ""
+    word_count: int = 0
+    issues: list[Issue] = Field(default_factory=list)
+    scores: dict[str, int] = Field(default_factory=dict)
+    overall_score: int = 0
+
+    # === NEW EXTENDED FIELDS ===
+    security_headers: SecurityHeaders = Field(default_factory=SecurityHeaders)
+    performance: PerformanceData = Field(default_factory=PerformanceData)
+    ssl_data: SSLData = Field(default_factory=SSLData)
+    js_rendering: JSRenderingData = Field(default_factory=JSRenderingData)
+    mobile: MobileData = Field(default_factory=MobileData)
+    breadcrumbs: BreadcrumbData = Field(default_factory=BreadcrumbData)
+    pagination: PaginationData = Field(default_factory=PaginationData)
+    crawl_depth: int = 0
+    redirect_chain: list[str] = Field(default_factory=list)
+    content_hash: str = ""
+    keywords: str = ""
+    response_headers: dict[str, str] = Field(default_factory=dict)
