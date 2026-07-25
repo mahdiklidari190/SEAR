@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEARBot - SEO Analysis Crawler</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        h1 { color: #0891b2; }
+        code { background: #f4f4f5; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .contact { background: #f0f9ff; padding: 1rem; border-left: 4px solid #0891b2; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <h1>SEARBot Documentation</h1>
+    <p>Welcome to the official documentation for <strong>SEARBot</strong>.</p>
+    
+    <h2>Bot Identity</h2>
+    <ul>
+        <li><strong>User-Agent:</strong> <code>SEARBot/1.0 (+https://klidari.ir/searbot)</code></li>
+        <li><strong>IP Range:</strong> (در آینده می‌توانید رنج IP سرورهای خود را اینجا بنویسید)</li>
+    </ul>
+
+    <h2>Purpose</h2>
+    <p>SEARBot is a professional SEO analysis and website crawling engine developed by <strong>Dark Wolf Agency</strong>. It is designed to:</p>
+    <ul>
+        <li>Analyze on-page SEO elements (Titles, Meta descriptions, Headings).</li>
+        <li>Identify technical SEO issues (Broken links, redirect chains, canonical tags).</li>
+        <li>Estimate Core Web Vitals risks based on HTML structure.</li>
+    </ul>
+
+    <h2>Crawl Behavior & Compliance</h2>
+    <p>SEARBot is built to be a good citizen of the web:</p>
+    <ul>
+        <li>It strictly respects <code>robots.txt</code> directives (both <code>Allow</code> and <code>Disallow</code>).</li>
+        <li>It enforces a default <code>crawl-delay</code> of 1 second between requests to avoid overloading your server.</li>
+        <li>It honors the <code>Crawl-delay</code> directive if specified in your <code>robots.txt</code>.</li>
+    </ul>
+
+    <h2>Blocking the Bot</h2>
+    <p>If you wish to block SEARBot from accessing your website, simply add the following lines to your <code>robots.txt</code> file:</p>
+    <pre><code>User-agent: SEARBot
+Disallow: /</code></pre>
+
+    <div class="contact">
+        <h3>Contact Information</h3>
+        <p>If you have any questions, concerns, or notice any abnormal behavior from this bot, please contact us immediately:</p>
+        <p><strong>Email:</strong> info@klidari.ir<br>
+        <strong>Website:</strong> <a href="https://klidari.ir">https://klidari.ir</a></p>
+    </div>
+</body>
+</html>

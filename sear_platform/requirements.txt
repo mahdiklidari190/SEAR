@@ -1,0 +1,40 @@
+# ==========================================
+# SEAR Enterprise SEO Platform Dependencies
+# ==========================================
+
+# --- Core & HTTP Clients ---
+httpx[http2]>=0.27.0
+aiohttp>=3.9.0
+tenacity>=8.3.0
+brotli>=1.1.0
+
+# --- HTML Parsing & Data Models ---
+lxml>=5.2.0
+beautifulsoup4>=4.12.0
+html5lib>=1.1
+pydantic>=2.7.0
+
+# --- SEO Analysis, Graph & Discovery ---
+ddgs>=9.0.0                 # ✅ نام جدید و صحیح کتابخانه جستجو
+networkx>=3.3
+numpy>=1.26.0
+datasketch>=1.6.0
+
+# --- Browser Automation (Google Chrome) ---
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# --- Reporting, UI & File Handling ---
+rich>=13.7.0
+reportlab>=4.2.0
+jinja2>=3.1.0
+aiofiles>=24.1.0
+
+# --- Google Integrations (GSC, GA4) ---
+google-api-python-client>=2.130.0
+google-auth>=2.30.0
+google-auth-oauthlib>=1.2.0
+
+# --- Security & Network Utilities ---
+cryptography>=42.0.0
+dnspython>=2.6.0
