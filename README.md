@@ -165,7 +165,7 @@ graph TD
 ```bash
 # 1. Clone the repository
 git clone https://github.com/mahdiklidari190/SEAR.git
-cd SEAR
+cd SEAR/sear_platform && python main.py
 
 # 2. Create a virtual environment
 python -m venv venv
